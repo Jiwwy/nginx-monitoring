@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    build: ./app
+    build: ./nginx-monitoring/app
     container_name: node-app
 
   nginx:
@@ -13,7 +13,7 @@ services:
     depends_on:
       - app
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-monitoring/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
 
   prometheus:
     image: prom/prometheus
