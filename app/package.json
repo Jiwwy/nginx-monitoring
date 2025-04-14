@@ -1,8 +1,13 @@
 {
-  "name": "node-nginx-monitoring",
+  "name": "node-app",
   "version": "1.0.0",
+  "description": "Node.js app with Prometheus metrics",
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.17.1",
+    "prom-client": "^13.0.1"
   }
 }
