@@ -1,0 +1,72 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Uso de CPU de NGINX",
+      "targets": [
+        {
+          "expr": "rate(container_cpu_usage_seconds_total{container_name='nginx'}[1m])",
+          "legendFormat": "CPU NGINX"
+        }
+      ],
+      "xaxis": {
+        "mode": "time"
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": "Uso de CPU"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Uso de Memoria de NGINX",
+      "targets": [
+        {
+          "expr": "container_memory_usage_bytes{container_name='nginx'}",
+          "legendFormat": "Memoria NGINX"
+        }
+      ],
+      "xaxis": {
+        "mode": "time"
+      },
+      "yaxes": [
+        {
+          "format": "bytes",
+          "label": "Uso de Memoria"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Tráfico de Red de NGINX",
+      "targets": [
+        {
+          "expr": "rate(container_network_receive_bytes_total{container_name='nginx'}[1m])",
+          "legendFormat": "Entrada NGINX"
+        },
+        {
+          "expr": "rate(container_network_transmit_bytes_total{container_name='nginx'}[1m])",
+          "legendFormat": "Salida NGINX"
+        }
+      ],
+      "xaxis": {
+        "mode": "time"
+      },
+      "yaxes": [
+        {
+          "format": "bytes",
+          "label": "Tráfico de Red"
+        }
+      ]
+    }
+  ],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  }
+}
