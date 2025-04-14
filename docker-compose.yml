@@ -2,9 +2,12 @@ version: '3.8'
 
 services:
   app:
-    build: ./app
+    build: ./app  # Aquí la ruta a tu aplicación Node.js
     container_name: node-app
-
+    networks:
+      - monitoring
+    expose:
+      - "3000"  # La aplicación corre en el puerto 3000
   nginx:
     image: nginx:latest
     container_name: nginx
@@ -14,6 +17,8 @@ services:
       - app
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - monitoring
 
   prometheus:
     image: prom/prometheus
@@ -22,6 +27,8 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
+    networks:
+      - monitoring
 
   grafana:
     image: grafana/grafana
@@ -33,3 +40,8 @@ services:
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/dashboards:/var/lib/grafana/dashboards
+    networks:
+      - monitoring
+networks:
+  monitoring:
+    driver: bridge
