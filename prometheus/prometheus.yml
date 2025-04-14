@@ -1,9 +1,13 @@
+global:
+  scrape_interval: 15s
+
 scrape_configs:
-  - job_name: 'nginx'
-    metrics_path: /nginx_status
-    static_configs:
-      - targets: ['nginx:80']
   - job_name: 'node-app'
     metrics_path: /metrics
     static_configs:
-      - targets: ['app:3000']
+      - targets: ['node-app:3000']  # Nombre del servicio 'node-app' en docker-compose.yml
+
+  - job_name: 'nginx'
+    metrics_path: /nginx_status
+    static_configs:
+      - targets: ['nginx:80']  # Nombre del servicio 'nginx' en docker-compose.yml
