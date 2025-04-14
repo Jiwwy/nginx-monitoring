@@ -43,7 +43,7 @@ services:
     networks:
       - monitoring
 
-   postgres:
+  postgres:
     image: postgres:14
     container_name: postgres
     environment:
