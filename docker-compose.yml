@@ -29,8 +29,7 @@ services:
       - "9113:9113"
     networks:
       - monitoring
-
-  services:
+      
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
